@@ -24,8 +24,11 @@
 
 package net.jaqobb.incognito;
 
+import javax.swing.JOptionPane;
+
 import java.lang.instrument.Instrumentation;
 
+@SuppressWarnings("MagicNumber")
 public final class Bootstrap
 {
     private Bootstrap()
@@ -34,9 +37,22 @@ public final class Bootstrap
 
     public static void main(String[] args)
     {
+        if (Float.parseFloat(System.getProperty("java.class.version")) < 52.0F)
+        {
+            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
+            System.exit(- 1);
+            return;
+        }
     }
 
     public static void premain(String args, Instrumentation inst)
     {
+        if (Float.parseFloat(System.getProperty("java.class.version")) < 52.0F)
+        {
+            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
+            System.exit(- 1);
+            return;
+        }
+
     }
 }
