@@ -25,49 +25,23 @@
 package net.jaqobb.incognito;
 
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 import java.lang.instrument.Instrumentation;
 
-public final class Bootstrap
+public final class IncognitoLauncher
 {
-    private static final float JAVA_8_VERSION = 52.0F;
-
-    static
-    {
-        try
-        {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        }
-        catch (Exception ex)
-        {
-            throw new InternalError(ex);
-        }
-    }
-
-    private Bootstrap()
+    private IncognitoLauncher()
     {
     }
 
-    public static void main(String[] args)
+    public static void launch(String[] args)
     {
-        if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
-        {
-            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
-            System.exit(- 1);
-            return;
-        }
-        IncognitoLauncher.launch(args);
+        //TODO check for previous configuration
+        JOptionPane.showConfirmDialog(null, "Do you want to reconfigure Incognito?" + "\n" + "If no, options from previous run will be chosen.",
+                                      "Setup Incognito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
 
-    public static void premain(String args, Instrumentation inst)
+    public static void launchAgent(String args, Instrumentation inst)
     {
-        if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
-        {
-            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
-            System.exit(- 1);
-            return;
-        }
-        IncognitoLauncher.launchAgent(args, inst);
     }
 }
