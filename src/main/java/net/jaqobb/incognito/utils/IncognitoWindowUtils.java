@@ -22,37 +22,21 @@
  * SOFTWARE.
  */
 
-package net.jaqobb.incognito;
+package net.jaqobb.incognito.utils;
 
-import javax.swing.JOptionPane;
-
-import java.lang.instrument.Instrumentation;
-
-public final class IncognitoLauncher
+public final class IncognitoWindowUtils
 {
-    private IncognitoLauncher()
+    private IncognitoWindowUtils()
     {
     }
 
-    public static void launch(String[] args)
+    public static int showInfoDialog()
     {
-        //TODO check for previous configuration
-        int option = JOptionPane.showConfirmDialog(null, "Do you want to reconfigure Incognito?" + "\n" + "If no, options from previous run will be chosen.",
-                                                   "Setup Incognito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        switch (option)
-        {
-            case 0:
-                //TODO reconfigure incognito
-                break;
-            case 1:
-                //TODO start incognito
-                break;
-            default:
-                break;
-        }
+        return 0;
     }
 
-    public static void launchAgent(String args, Instrumentation inst)
+    public static int showErrorDialog()
     {
+        return 0;
     }
 }
