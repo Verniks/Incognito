@@ -71,7 +71,23 @@ public final class IncognitoUtils
     public static OS getPlatform()
     {
         String os = System.getProperty("os.name").toLowerCase();
-        return os.contains("win") ? OS.WINDOWS : os.contains("mac") ? OS.MACOS : os.contains("linux") || os.contains("unix") ? OS.LINUX : os.contains("solaris") || os.contains("sunos") ? OS.SOLARIS : OS.UNKNOWN;
+        if (os.contains("win"))
+        {
+            return OS.WINDOWS;
+        }
+        if (os.contains("mac"))
+        {
+            return OS.MACOS;
+        }
+        if (os.contains("linux") || os.contains("unix"))
+        {
+            return OS.LINUX;
+        }
+        if (os.contains("solaris") || os.contains("sunos"))
+        {
+            return OS.SOLARIS;
+        }
+        return OS.UNKNOWN;
     }
 
     enum OS
