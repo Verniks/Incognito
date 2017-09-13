@@ -38,7 +38,7 @@ public final class IncognitoLauncher
     {
         //TODO check for previous configuration
         int option = JOptionPane.showConfirmDialog(null, "Do you want to reconfigure Incognito?" + "\n" + "If no, options from previous run will be chosen.",
-                                                   "Setup Incognito", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                                                   "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         switch (option)
         {
             case 0:
@@ -48,6 +48,7 @@ public final class IncognitoLauncher
                 //TODO start incognito
                 break;
             default:
+                System.exit(- 1);
                 break;
         }
     }

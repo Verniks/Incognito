@@ -24,19 +24,34 @@
 
 package net.jaqobb.incognito.utils;
 
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+
+@SuppressWarnings("DynamicRegexReplaceableByCompiledPattern")
 public final class IncognitoWindowUtils
 {
     private IncognitoWindowUtils()
     {
     }
 
-    public static int showInfoDialog()
+    public static void showInfoDialog(Component parent, String title, String message, int messageType)
     {
-        return 0;
+        JOptionPane.showMessageDialog(parent, message, title, messageType);
     }
 
-    public static int showErrorDialog()
+    public static void showErrorDialog(Component parent, String stackTrace)
     {
-        return 0;
+        stackTrace = stackTrace.replace("\t", "  ");
+        JTextArea textArea = new JTextArea(stackTrace);
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Monospaced", textArea.getFont().getStyle(), textArea.getFont().getSize()));
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setPreferredSize(new Dimension(600, 400));
+        JOptionPane.showMessageDialog(null, scrollPane, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }

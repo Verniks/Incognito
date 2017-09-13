@@ -25,6 +25,9 @@
 package net.jaqobb.incognito.utils;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public final class IncognitoUtils
 {
@@ -95,12 +98,29 @@ public final class IncognitoUtils
         return OS.UNKNOWN;
     }
 
-    private enum OS
+    enum OS
     {
         WINDOWS,
         MACOS,
         LINUX,
         SOLARIS,
         UNKNOWN
+    }
+
+    public static String getStackTrace(Throwable throwable)
+    {
+        if (throwable == null)
+        {
+            return "Could not obtain stack trace.";
+        }
+        try (StringWriter stringWriter = new StringWriter(); PrintWriter printWriter = new PrintWriter(stringWriter))
+        {
+            throwable.printStackTrace(printWriter);
+            return stringWriter.getBuffer().toString();
+        }
+        catch (IOException ignored)
+        {
+            return "Could not obtain stack trace.";
+        }
     }
 }

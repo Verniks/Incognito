@@ -22,12 +22,16 @@
  * SOFTWARE.
  */
 
-package net.jaqobb.incognito;
+package net.jaqobb.incognito.main;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import java.lang.instrument.Instrumentation;
+
+import net.jaqobb.incognito.IncognitoLauncher;
+import net.jaqobb.incognito.utils.IncognitoUtils;
+import net.jaqobb.incognito.utils.IncognitoWindowUtils;
 
 public final class Bootstrap
 {
@@ -41,7 +45,8 @@ public final class Bootstrap
         }
         catch (Exception ex)
         {
-            throw new InternalError(ex);
+            IncognitoWindowUtils.showErrorDialog(null, IncognitoUtils.getStackTrace(ex));
+            System.exit(- 1);
         }
     }
 
@@ -53,7 +58,7 @@ public final class Bootstrap
     {
         if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
         {
-            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
+            IncognitoWindowUtils.showInfoDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.INFORMATION_MESSAGE);
             System.exit(- 1);
             return;
         }
@@ -64,7 +69,7 @@ public final class Bootstrap
     {
         if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
         {
-            JOptionPane.showMessageDialog(null, "Incognito requires Java 8 or above to function!");
+            IncognitoWindowUtils.showInfoDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.INFORMATION_MESSAGE);
             System.exit(- 1);
             return;
         }

@@ -53,8 +53,8 @@
                     <archive>
                         <manifestEntries>
                             <Built-By>Jaqobb</Built-By>
-                            <Main-Class>net.jaqobb.incognito.Bootstrap</Main-Class>
-                            <Premain-Class>net.jaqobb.incognito.Bootstrap</Premain-Class>
+                            <Main-Class>net.jaqobb.incognito.main.Bootstrap</Main-Class>
+                            <Premain-Class>net.jaqobb.incognito.main.Bootstrap</Premain-Class>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                         </manifestEntries>
