@@ -26,7 +26,10 @@ package net.jaqobb.incognito;
 
 import javax.swing.JOptionPane;
 
+import java.io.File;
 import java.lang.instrument.Instrumentation;
+
+import net.jaqobb.incognito.utils.IncognitoUtils;
 
 public final class IncognitoLauncher
 {
@@ -36,6 +39,13 @@ public final class IncognitoLauncher
 
     public static void launch(String[] args)
     {
+        File profiles = new File(IncognitoUtils.getWorkingDirectory(), "launcher_profiles.json");
+        if (! profiles.exists() || ! profiles.isFile())
+        {
+            JOptionPane.showMessageDialog(null, "File launcher_profiles.json does not exist or it is not a folder.", "Setup", JOptionPane.ERROR_MESSAGE);
+            System.exit(- 1);
+            return;
+        }
         //TODO check for previous setup
         int option = JOptionPane.showConfirmDialog(null, "Do you want to resetup Incognito?", "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         switch (option)

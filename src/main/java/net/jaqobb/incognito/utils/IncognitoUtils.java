@@ -24,8 +24,12 @@
 
 package net.jaqobb.incognito.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -101,10 +105,6 @@ public final class IncognitoUtils
 
     public static String getStackTrace(Throwable throwable)
     {
-        if (throwable == null)
-        {
-            return "Could not obtain stack trace.";
-        }
         try (StringWriter stringWriter = new StringWriter(); PrintWriter printWriter = new PrintWriter(stringWriter))
         {
             throwable.printStackTrace(printWriter);
@@ -113,6 +113,30 @@ public final class IncognitoUtils
         catch (IOException ignored)
         {
             return "Could not obtain stack trace.";
+        }
+    }
+
+    public static String readFile(File file, String encoding) throws IOException
+    {
+        return readText(new FileInputStream(file), encoding);
+    }
+
+    public static String readText(InputStream input, String encoding) throws IOException
+    {
+        try (InputStreamReader inputReader = new InputStreamReader(input, encoding); BufferedReader reader = new BufferedReader(inputReader))
+        {
+            StringBuilder builder = new StringBuilder();
+            while (true)
+            {
+                String line = reader.readLine();
+                if (line == null)
+                {
+                    break;
+                }
+                builder.append(line);
+                builder.append("\n");
+            }
+            return builder.toString();
         }
     }
 }
