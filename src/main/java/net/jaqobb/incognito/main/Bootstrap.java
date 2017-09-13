@@ -58,7 +58,7 @@ public final class Bootstrap
     {
         if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
         {
-            IncognitoWindowUtils.showInfoDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.ERROR_MESSAGE);
             System.exit(- 1);
             return;
         }
@@ -69,7 +69,7 @@ public final class Bootstrap
     {
         if (Float.parseFloat(System.getProperty("java.class.version")) < JAVA_8_VERSION)
         {
-            IncognitoWindowUtils.showInfoDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error", "Incognito requires Java 8 or above to function!", JOptionPane.ERROR_MESSAGE);
             System.exit(- 1);
             return;
         }

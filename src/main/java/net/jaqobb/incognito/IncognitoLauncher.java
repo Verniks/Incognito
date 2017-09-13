@@ -36,15 +36,14 @@ public final class IncognitoLauncher
 
     public static void launch(String[] args)
     {
-        //TODO check for previous configuration
-        int option = JOptionPane.showConfirmDialog(null, "Do you want to reconfigure Incognito?" + "\n" + "If no, options from previous run will be chosen.",
-                                                   "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        //TODO check for previous setup
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to resetup Incognito?", "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         switch (option)
         {
-            case 0:
-                //TODO reconfigure incognito
+            case JOptionPane.YES_OPTION:
+                //TODO resetup incognito
                 break;
-            case 1:
+            case JOptionPane.NO_OPTION:
                 //TODO start incognito
                 break;
             default:

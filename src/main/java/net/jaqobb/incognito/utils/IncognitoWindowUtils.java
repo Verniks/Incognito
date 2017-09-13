@@ -39,11 +39,6 @@ public final class IncognitoWindowUtils
     {
     }
 
-    public static void showInfoDialog(Component parent, String title, String message, int messageType)
-    {
-        JOptionPane.showMessageDialog(parent, message, title, messageType);
-    }
-
     public static void showErrorDialog(Component parent, String stackTrace)
     {
         stackTrace = stackTrace.replace("\t", "  ");

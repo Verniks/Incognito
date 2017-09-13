@@ -26,20 +26,13 @@
         </developer>
     </developers>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <finalName>${project.artifactId}-${project.version}</finalName>
-        <project.build.finalName>${finalName}</project.build.finalName>
-    </properties>
-
     <dependencies>
 
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+
         <defaultGoal>clean install</defaultGoal>
 
         <sourceDirectory>src/main/java</sourceDirectory>
@@ -67,8 +60,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.2</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
 

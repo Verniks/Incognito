@@ -79,26 +79,18 @@ public final class IncognitoUtils
         {
             return OS.MACOS;
         }
-        if (os.contains("linux"))
+        if (os.contains("linux") || os.contains("unix"))
         {
             return OS.LINUX;
         }
-        if (os.contains("unix"))
-        {
-            return OS.LINUX;
-        }
-        if (os.contains("solaris"))
-        {
-            return OS.SOLARIS;
-        }
-        if (os.contains("sunos"))
+        if (os.contains("solaris") || os.contains("sunos"))
         {
             return OS.SOLARIS;
         }
         return OS.UNKNOWN;
     }
 
-    enum OS
+    public enum OS
     {
         WINDOWS,
         MACOS,
