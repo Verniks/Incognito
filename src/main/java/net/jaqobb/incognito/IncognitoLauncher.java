@@ -54,7 +54,7 @@ public final class IncognitoLauncher
         JSONObject profilesJson;
         try
         {
-            json = new JSONObject(IncognitoUtils.readFile(profiles, "UTF-8"));
+            json = new JSONObject(IncognitoUtils.readFile(profiles));
             profilesJson = json.getJSONObject("profiles");
         }
         catch (JSONException | IOException ex)

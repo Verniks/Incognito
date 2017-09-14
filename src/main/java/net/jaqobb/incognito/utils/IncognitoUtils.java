@@ -35,6 +35,8 @@ import java.io.StringWriter;
 
 public final class IncognitoUtils
 {
+    private static final String DEFAULT_ENCODING = "UTF-8";
+
     private IncognitoUtils()
     {
     }
@@ -116,9 +118,19 @@ public final class IncognitoUtils
         }
     }
 
+    public static String readFile(File file) throws IOException
+    {
+        return readText(new FileInputStream(file), DEFAULT_ENCODING);
+    }
+
     public static String readFile(File file, String encoding) throws IOException
     {
         return readText(new FileInputStream(file), encoding);
+    }
+
+    public static String readText(InputStream input) throws IOException
+    {
+        return readText(input, DEFAULT_ENCODING);
     }
 
     public static String readText(InputStream input, String encoding) throws IOException
