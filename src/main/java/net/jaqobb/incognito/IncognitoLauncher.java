@@ -27,9 +27,13 @@ package net.jaqobb.incognito;
 import javax.swing.JOptionPane;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.instrument.Instrumentation;
 
+import net.jaqobb.incognito.json.JSONException;
+import net.jaqobb.incognito.json.JSONObject;
 import net.jaqobb.incognito.utils.IncognitoUtils;
+import net.jaqobb.incognito.utils.IncognitoWindowUtils;
 
 public final class IncognitoLauncher
 {
@@ -46,7 +50,25 @@ public final class IncognitoLauncher
             System.exit(- 1);
             return;
         }
-        //TODO check for previous setup
+        JSONObject json;
+        JSONObject profilesJson;
+        try
+        {
+            json = new JSONObject(IncognitoUtils.readFile(profiles, "UTF-8"));
+            profilesJson = json.getJSONObject("profiles");
+        }
+        catch (JSONException | IOException ex)
+        {
+            IncognitoWindowUtils.showErrorDialog(null, IncognitoUtils.getStackTrace(ex));
+            System.exit(- 1);
+            return;
+        }
+        if (! profilesJson.has("DefinitelyNotIncognito"))
+        {
+            JOptionPane.showConfirmDialog(null, "test", "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            //TODO first run, setup incognito
+            return;
+        }
         int option = JOptionPane.showConfirmDialog(null, "Do you want to resetup Incognito?", "Setup", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         switch (option)
         {
